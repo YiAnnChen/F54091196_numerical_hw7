@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.sparse.linalg import cg
 
-# 定義係數矩陣 A 與常數向量 b
+
 A = np.array([
     [4, -1, 0, -1, 0, 0],
     [-1, 4, -1, 0, -1, 0],
@@ -13,7 +13,7 @@ A = np.array([
 
 b = np.array([0, -1, 9, 4, 8, 6], dtype=float)
 
-# Jacobi 方法
+
 def jacobi(A, b, x0=None, tol=1e-10, max_iterations=1000):
     n = len(b)
     x = np.zeros_like(b) if x0 is None else x0.copy()
@@ -27,7 +27,7 @@ def jacobi(A, b, x0=None, tol=1e-10, max_iterations=1000):
         x = x_new
     return x
 
-# Gauss-Seidel 方法
+
 def gauss_seidel(A, b, x0=None, tol=1e-10, max_iterations=1000):
     n = len(b)
     x = np.zeros_like(b) if x0 is None else x0.copy()
@@ -42,7 +42,7 @@ def gauss_seidel(A, b, x0=None, tol=1e-10, max_iterations=1000):
         x = x_new
     return x
 
-# SOR 方法（Successive Over-Relaxation）
+
 def sor(A, b, omega=1.25, x0=None, tol=1e-10, max_iterations=1000):
     n = len(b)
     x = np.zeros_like(b) if x0 is None else x0.copy()
@@ -57,18 +57,17 @@ def sor(A, b, omega=1.25, x0=None, tol=1e-10, max_iterations=1000):
         x = x_new
     return x
 
-# 共軛梯度法（Conjugate Gradient）
+
 def conjugate_gradient(A, b, x0=None, tol=1e-10):
     x, info = cg(A, b, x0=x0, tol=tol)
     return x
 
-# 執行所有方法
 jacobi_result = jacobi(A, b)
 gs_result = gauss_seidel(A, b)
 sor_result = sor(A, b)
 cg_result = conjugate_gradient(A, b)
 
-# 顯示結果
+
 print("(a)Jacobi Method Solution:")
 print(jacobi_result)
 
